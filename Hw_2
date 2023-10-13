@@ -1,0 +1,44 @@
+#1 task
+from datetime import datetime, timedelta
+
+#The Moscow Times - Wednesday, October 2, 2002
+date_string_1 = "Wednesday, October 2, 2002"
+
+date_object_1 = datetime.strptime(date_string_1, "%A, %B %d, %Y")
+print("date_object_1 = ", date_object_1)
+print("type of date_object_1 =", type(date_object_1))
+
+#The Guardian - Friday, 11.10.13
+date_string_2 = "Friday, 11.10.13"
+
+date_object_2 = datetime.strptime(date_string_2, "%A, %d.%m.%y")
+print("date_object_2 = ", date_object_2)
+print("type of date_object_2 =", type(date_object_2))
+
+#Daily News - Thursday, 18 August 1977
+date_string_3 = "Thursday, 18 August 1977"
+
+date_object_3 = datetime.strptime(date_string_3, "%A, %d %B %Y")
+print("date_object_3 = ", date_object_3)
+print("type of date_object_3 =", type(date_object_3))
+
+#2 task
+date_list = []
+
+def validate(date):
+    try: 
+      datetime.strptime(date, "%Y-%m-%d")
+      return True
+    except: 
+      return False
+
+def date_range(start_time, end_time):
+  if validate(start_time) and validate(end_time):    
+    start_time_dt = datetime.strptime(start_time, "%Y-%m-%d")
+    end_time_dt = datetime.strptime(end_time, "%Y-%m-%d")
+    if start_time_dt < end_time_dt:
+      while start_time_dt <= end_time_dt:
+        date_list.append(start_time_dt.strftime("%Y-%m-%d"))
+        start_time_dt += timedelta(days=1)
+  print(date_list)
+date_range("2022-01-01", "2022-01-03")
